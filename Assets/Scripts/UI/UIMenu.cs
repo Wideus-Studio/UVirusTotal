@@ -4,7 +4,9 @@ using UnityEditor.UI;
 using UnityEngine;
 
 public abstract class UIMenu : MonoBehaviour {
-    public virtual void ChangeVisiable() {
-        gameObject.SetActive(!gameObject.active);
+    public string menuName;
+
+    public virtual void ChangeVisiable(bool value) {
+        gameObject.SetActive(value);
     }
 }
