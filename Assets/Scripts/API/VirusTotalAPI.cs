@@ -29,7 +29,7 @@ namespace VirusTotal {
         /// <summary>
         /// Ключ api
         /// </summary>
-        public static string APIKEY = "057dd0f7b03a8dc72191b32e3d5ee613564a0f5d2f8cd223cd54848fa0ce752d";
+        public static string APIKEY = "";
 
         /// <summary>
         /// Файлы, отправленные на сканирование

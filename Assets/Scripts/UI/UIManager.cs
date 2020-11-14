@@ -12,6 +12,17 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private InputField _settingsApiKey = null;
     [SerializeField] private InputField _settingsMaxCount = null;
 
+    [Header("UITextComponent")]
+    [SerializeField] private UITextComponent[] _textComponents = null;
+
+    private void Awake() {
+        Game.Saves.SavesManager.LoadData();
+        Game.Settings.Load();
+
+        _textComponents = FindObjectsOfType<UITextComponent>();
+        ChangeLanguage();
+    }
+
     private void Start() {
         _settingsApiKey.text = VirusTotal.API.APIKEY;
         _settingsMaxCount.text = $"{VirusTotal.API.maxScansList}";
@@ -35,5 +46,12 @@ public class UIManager : MonoBehaviour {
     public void ApplySettings() {
         VirusTotal.API.APIKEY = _settingsApiKey.text;
         VirusTotal.API.maxScansList = int.Parse(_settingsMaxCount.text);
+
+        Game.Settings.Apply(VirusTotal.API.APIKEY, VirusTotal.API.maxScansList, "ru");
+        ChangeLanguage();
+    }
+
+    public void ChangeLanguage() {
+        for (int i = 0; i < _textComponents.Length; i++) _textComponents[i].UpdateLanguage();
     }
 }
